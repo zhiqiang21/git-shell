@@ -7,7 +7,7 @@
  */
 
 //  https://www.baidu.com?aa=111#/hash
-// https://www.baidu.com/#/aaaa?bbb=1
+//  https://www.baidu.com/#/aaaa?bbb=1
 //  https://www.baidu.com?aa=111#/hash?bbb=2&aa=222
 
 // 因为平时大家url中拼接参数时的不规范导致 hash 和 query参数的获取错误以上列举了四种可能的情况
@@ -60,7 +60,7 @@ function getSearchParams(index, url) {
     const hashIndex = search.indexOf('#');
 
     //  https://www.baidu.com?aa=111#/hash?bbb=2&aa=222
-    if (hashIndex) {
+    if (hashIndex > 0) {
         const before = search.substring(0, hashIndex);
         const hashString = search.substring(hashIndex);
 

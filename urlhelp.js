@@ -11,6 +11,7 @@
 //  https://www.baidu.com?aa=111#/hash?bbb=2&aa=222
 
 // 因为平时大家url中拼接参数时的不规范导致 hash 和 query参数的获取错误以上列举了四种可能的情况
+const {URL} = require('url');
 
 const args = process.argv;
 
@@ -18,11 +19,11 @@ if (args.length < 3) {
     return 'please input you url string !';
 }
 
-const urlString = args.slice(2);
+const urlString = (new URL(args.slice(2))).href;
+
 // const urlString = 'https://www.baidu.com?aa=111#/hash?bbb=2&aa=222';
 // const urlString = 'https://www.baidu.com?aa=111#/hash';
 // const urlString = 'https://www.baidu.com/#/aaaa?bbb=1';
-
 
 const hashIndex = urlString.indexOf('#');
 const searchIndex = urlString.indexOf('?');

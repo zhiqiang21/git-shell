@@ -14,7 +14,6 @@
   "author": "zhiqiang21",
   "license": "ISC",
   "dependencies": {
-    "query-string": "^6.1.0",
     "shelljs": "^0.8.3"
   }
 }

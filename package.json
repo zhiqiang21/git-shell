@@ -8,7 +8,6 @@
   },
   "bin": {
     "urlhelp": "./urlhelp.js",
-    "gitdidi": "./gitdidi.js",
     "gitclone": "./github.js"
   },
   "author": "zhiqiang21",

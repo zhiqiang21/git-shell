@@ -8,7 +8,8 @@
   },
   "bin": {
     "urlhelp": "./urlhelp.js",
-    "gitclone": "./github.js"
+    "gitclone": "./github.js",
+    "har": "./har.js"
   },
   "author": "zhiqiang21",
   "license": "ISC",

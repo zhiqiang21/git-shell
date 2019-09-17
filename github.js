@@ -2,6 +2,7 @@
 
 const shelljs = require('shelljs');
 const path = require('path');
+const chalk = require('chalk')
 
 const args = process.argv;
 const repUrl = args[2];
@@ -15,7 +16,7 @@ let cloneType = 'github';
 let repName = '';
 
 if (args.length < 3) {
-    shelljs.echo(' please input you repository url');
+    shelljs.echo(chalk.red('please input you repository url'));
 }
 
 if (args.length === 4) {
@@ -52,7 +53,7 @@ function cloneRepo(url, name) {
     const cloneCode = shelljs.exec(`git clone ${url} ${name}`).code;
 
     if (cloneCode !== 0) {
-        shelljs.echo('repository clone fail !');
+        shelljs.echo(chalk.red('repository clone fail !'));
         shelljs.exit(1);
     } else {
         shelljs.cd(`${cloneIntoDir}`);
@@ -79,7 +80,7 @@ function didiConf() {
     shelljs.exec(`git config --local user.email "hpuhouzhiqiang@didiglobal.com"`);
     shelljs.exec(`git config --local core.ignorecase false`);
 
-    shelljs.echo('repository clone success and init git config complete !');
+    shelljs.echo(chalk.green('repository clone success and init git config complete !'));
     shelljs.exit(1);
 }
 
@@ -90,6 +91,6 @@ function githubConf() {
     shelljs.exec(`git config --local user.email "hpuhouzhiqiang@gmail.com"`);
     shelljs.exec(`git config --local core.ignorecase false`);
 
-    shelljs.echo('repository clone success and init git config complete !');
+    shelljs.echo(chalk.green('repository clone success and init git config complete !'));
     shelljs.exit(1);
 }

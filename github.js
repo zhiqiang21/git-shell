@@ -6,11 +6,14 @@ const chalk = require('chalk')
 
 const args = process.argv;
 const repUrl = args[2];
+const cloneTypeList = [
+    'github',
+    'didi'
+];
+
 /*
  * github
  * didi
- * baidu
- * weibo
  */
 let cloneType = 'github';
 let repName = '';
@@ -21,7 +24,8 @@ if (args.length < 3) {
 
 if (args.length === 4) {
     console.log(args[3]);
-    if (args[3] && args[3].indexOf('-') > -1) {
+    // clone 的文件夹名字可能包含 -
+    if (args[3] && args[3].indexOf('-') === 0 && cloneTypeList.includes(args[3].shift())) {
         cloneType = args[3].substring(1);
     } else {
         repName = args[3] || '';

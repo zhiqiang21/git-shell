@@ -33,7 +33,7 @@ if (args.length === 4) {
 }
 
 if (args.length === 5) {
-    cloneType = args[4].substring(2);
+    cloneType =  args[4].substring(1);
     repName = args[3] || '';
 }
 

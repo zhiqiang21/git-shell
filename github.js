@@ -25,7 +25,7 @@ if (args.length < 3) {
 if (args.length === 4) {
     console.log(args[3]);
     // clone 的文件夹名字可能包含 -
-    if (args[3] && args[3].indexOf('-') === 0 && cloneTypeList.includes(args[3].shift())) {
+    if (args[3] && args[3].indexOf('-') === 0 && cloneTypeList.includes(args[3].substring(1))) {
         cloneType = args[3].substring(1);
     } else {
         repName = args[3] || '';

@@ -7,8 +7,9 @@
     "build:babel": "./node_modules/.bin/babel ./src --out-dir dist  --source-maps inline --ignore ./dist/* "
   },
   "bin": {
-    "urlhelp": "./dist/urlhelp.js",
-    "gitclone": "./dist/github.js"
+    "urlhelp": "dist/urlhelp.js",
+    "gitclone": "dist/github.js",
+    "har": "dist/har.js"
   },
   "author": "zhiqiang21",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "@babel/preset-env": "^7.9.6",
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "yargs-parser": "^20.2.4"
   }
 }

@@ -9,7 +9,8 @@
   "bin": {
     "urlhelp": "dist/urlhelp.js",
     "gitclone": "dist/github.js",
-    "har": "dist/har.js"
+    "har": "dist/har.js",
+    "hcp": "dist/copy.js"
   },
   "author": "zhiqiang21",
   "license": "ISC",
@@ -19,7 +20,9 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
     "chalk": "^2.4.2",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^8.1.0",
+    "minimist": "^1.2.5",
     "shelljs": "^0.8.5",
     "yargs-parser": "^20.2.4"
   }

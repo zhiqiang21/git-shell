@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * @file 将源路径下的文件拷贝到目标目录
  * @date 2019/11/25
@@ -16,25 +17,27 @@ const currentPath = process.cwd();
 
 if (!argv["f"] || !argv["t"]) {
     console.log(chalk.red("please input from path and to path!"));
-    return;
 }
 
 const fromPath = path.resolve(currentPath, argv["f"]);
 const toPath = path.resolve(currentPath, argv["t"]);
-const dirList = gb.sync(`${fromPath}/${argv["n"]}*/`, {
+const dirList = gb.sync(`${fromPath}/${argv["n"]}*.{avi,wmv,mpeg,mp4,m4v,mov,asf,flv,f4v,rmvb,rm,3gp,vob,mkv}`, {
     onlyDirectories: true,
 });
 
 const copyTask = dirList.map((item) => {
     return new Promise((resolve, reject) => {
-        copyFile(item, toPath);
+        moveFile(item, toPath);
         resolve();
     });
 });
 
+dirList.forEach(item => console.log(`需要移动的文件列表：`, chalk.blue(item)))
+
 Promise.all(copyTask).then((resp) => {
-    // deleteFromDir(dirList);
-    console.log(`-------------`, chalk.blue('文件移动完毕！'));
+  console.log(`-------------`, chalk.blue('文件移动完毕！'));
+  deleteFromDir(dirList);
+  console.log(`-------------`, chalk.red('源文件删除完毕！'));
 });
 
 function getFileName(url) {
@@ -42,28 +45,29 @@ function getFileName(url) {
     return url.substring(url.lastIndexOf("/") + 1);
 }
 
-
-
 /**
  * 从源路径到目标路径
  * @param {string} srcPath 源目录
  * @param {string} desPath 目标路径
  */
-function copyFile(srcPath, desPath) {
+function moveFile(srcPath, desPath) {
     const srcItemList = fs.readdirSync(srcPath);
 
     for (let i = 0; i < srcItemList.length; i++) {
         const item = srcItemList[i];
+        // macos 上的隐藏文件类型
         if (/^\..+/.test(item)) continue;
 
         const _path = path.resolve(srcPath, item);
         const fileState = fs.statSync(_path);
 
         if (fileState.isDirectory()) {
-            copyFile(_path, desPath);
+            moveFile(_path, desPath);
         } else {
             const fileName = getFileName(_path);
-            fs.copySync(_path, `${desPath}/${fileName}`);
+            
+            if(!fileName) return;
+            fs.moveSync(_path, `${desPath}/${fileName}`, {overwrite: true});
         }
     }
 }

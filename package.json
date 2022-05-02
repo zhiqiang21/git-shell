@@ -4,7 +4,8 @@
   "description": "node shell js ",
   "main": "index.js",
   "scripts": {
-    "build:babel": "./node_modules/.bin/babel ./src --out-dir dist  --source-maps inline --ignore ./dist/* "
+    "build:babel": "./node_modules/.bin/babel ./src --out-dir dist  --source-maps inline --ignore ./dist/* ",
+    "build:link": "npm run build:babel && npm link"
   },
   "bin": {
     "urlhelp": "dist/urlhelp.js",
